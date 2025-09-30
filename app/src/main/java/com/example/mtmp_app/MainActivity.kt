@@ -52,7 +52,8 @@ class MainActivity : ComponentActivity() {
                     startDestination = "main"
                 ) {
                     composable("main") { MainScaffold(navController) }
-                    composable("local_version") { LocalVersionScreen() }
+                    composable("local_version") { LocalVersionScreen(navController) }
+                    composable("print_result") { PrintResultScreen(navController) }
                 }
             }
         }
