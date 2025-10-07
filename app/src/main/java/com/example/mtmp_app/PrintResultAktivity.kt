@@ -18,11 +18,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import android.widget.Toast
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.versionedparcelable.VersionedParcelize
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializer
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.PI
 
-data class ProjectilePoint(val time: Float, val x: Float, val y: Float)
+
+//Serializable
+//data class ProjectilePoint(val time: Float, val x: Float, val y: Float)
 
 @Composable
 fun PrintResultScreen(navController: NavController) {
@@ -161,6 +166,55 @@ fun PrintResultScreen(navController: NavController) {
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "points",
+                            ArrayList(points)
+                        )
+                        navController.navigate("animation_screen")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    shape = RoundedCornerShape(25.dp)
+                ) {
+                    Text(
+                        text = "Animácia",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Button(
+                    onClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "points",
+                            ArrayList(points)
+                        )
+                        navController.navigate("graph_screen")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    shape = RoundedCornerShape(25.dp)
+                ) {
+                    Text(
+                        text = "Graf",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
+                    )
+                }
+            }
+
 
             Spacer(modifier = Modifier.height(16.dp))
 
