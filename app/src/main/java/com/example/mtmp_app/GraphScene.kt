@@ -73,7 +73,7 @@ fun GraphScreen(navController: NavController) {
                         val maxY = (points.maxOf { it.y } * 1.1f)
                         val maxT = (points.maxOf { it.time } * 1.1f)
 
-                        // Osi
+
                         drawLine(
                             color = Color.White,
                             start = Offset(padding, padding),
@@ -87,15 +87,14 @@ fun GraphScreen(navController: NavController) {
                             strokeWidth = 4f
                         )
 
-                        // Popisky osí
                         val density = this@Canvas.drawContext.density
-                        val textPadding = 20.dp.toPx() // 10 dp → pixely
+                        val textPadding = 20.dp.toPx()
 
                         drawContext.canvas.nativeCanvas.apply {
                             drawText(
                                 "Výška [m]",
-                                0f + textPadding, // pridáme padding zľava
-                                padding + textPadding, // pridáme padding zhora
+                                0f + textPadding,
+                                padding + textPadding,
                                 android.graphics.Paint().apply {
                                     color = android.graphics.Color.WHITE
                                     textSize = 36f
@@ -104,7 +103,7 @@ fun GraphScreen(navController: NavController) {
                             drawText(
                                 "Čas [s]",
                                 width / 2,
-                                height + padding * 1.8f + textPadding, // pridáme padding zdola
+                                height + padding * 1.8f + textPadding,
                                 android.graphics.Paint().apply {
                                     color = android.graphics.Color.WHITE
                                     textSize = 36f
@@ -113,7 +112,6 @@ fun GraphScreen(navController: NavController) {
                         }
 
 
-                        // Číselné hodnoty (os Y)
                         val stepY = maxY / 5
                         for (i in 0..5) {
                             val yValue = stepY * i
@@ -129,7 +127,6 @@ fun GraphScreen(navController: NavController) {
                             )
                         }
 
-                        // Číselné hodnoty (os X)
                         val stepT = maxT / 5
                         for (i in 0..5) {
                             val tValue = stepT * i
@@ -145,7 +142,6 @@ fun GraphScreen(navController: NavController) {
                             )
                         }
 
-                        // Kreslenie grafu (čiary medzi bodmi)
                         val path = Path()
                         points.sortedBy { it.time }.forEachIndexed { index, p ->
                             val x = padding + (p.time / maxT) * width
@@ -156,10 +152,10 @@ fun GraphScreen(navController: NavController) {
                         drawPath(
                             path = path,
                             color = Color.Cyan,
-                            alpha = 1f, // plná viditeľnosť
-                            style = androidx.compose.ui.graphics.drawscope.Stroke(width = 6f), // čiarový štýl
-                            colorFilter = null, // žiadny filter
-                            blendMode = androidx.compose.ui.graphics.BlendMode.SrcOver // bežné prekreslenie
+                            alpha = 1f,
+                            style = androidx.compose.ui.graphics.drawscope.Stroke(width = 6f),
+                            colorFilter = null,
+                            blendMode = androidx.compose.ui.graphics.BlendMode.SrcOver
                         )
                     }
                 }

@@ -107,7 +107,7 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
             val scaleX = width / maxT
             val scaleY = height / maxY
 
-            // --- OSY ---
+
             drawLine(
                 color = Color.White,
                 start = Offset(padding, padding),
@@ -122,14 +122,14 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
             )
 
             val density = this@Canvas.drawContext.density
-            val textPadding = 20.dp.toPx() // 10 dp → pixely
+            val textPadding = 20.dp.toPx()
 
-// --- POPISKY OSÍ ---
+
             drawContext.canvas.nativeCanvas.apply {
                 drawText(
                     "Čas [s]",
                     width / 2,
-                    height + padding * 1.8f + textPadding, // pridáme padding zdola
+                    height + padding * 1.8f + textPadding,
                     android.graphics.Paint().apply {
                         color = android.graphics.Color.WHITE
                         textSize = 36f
@@ -137,8 +137,8 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
                 )
                 drawText(
                     "Výška [m]",
-                    0f + textPadding, // pridáme padding zľava
-                    padding + textPadding, // pridáme padding zhora
+                    0f + textPadding,
+                    padding + textPadding,
                     android.graphics.Paint().apply {
                         color = android.graphics.Color.WHITE
                         textSize = 36f
@@ -147,7 +147,6 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
             }
 
 
-            // --- ČÍSELNÉ HODNOTY OSÍ ---
             val stepY = maxY / 5
             for (i in 0..5) {
                 val yValue = stepY * i
@@ -178,7 +177,7 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
                 )
             }
 
-            // --- TRAJEKTÓRIA ---
+
             for (i in 1 until points.size) {
                 val prev = points[i - 1]
                 val next = points[i]
@@ -190,7 +189,7 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
                 )
             }
 
-            // --- STOPA ---
+
             for (i in 1..currentIndex) {
                 if (i >= points.size) break
                 val prev = points[i - 1]
@@ -204,7 +203,7 @@ fun ProjectileAnimation(points: ArrayList<ProjectilePoint>?) {
                 )
             }
 
-            // --- PROJEKTIL ---
+
             val current = points.getOrNull(currentIndex)
             if (current != null) {
                 drawCircle(
