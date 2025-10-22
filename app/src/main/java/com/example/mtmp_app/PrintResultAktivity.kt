@@ -42,7 +42,8 @@ fun PrintResultScreen(navController: NavController) {
     var range by remember { mutableStateOf(0f) }
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.102:8080/") // IP mojho PC je to ipconfig a das tu IP
+        // v cmd zadajte prikaz ipconfig, vyhladajte adresu IPV4
+        .baseUrl("http://192.168.0.103:8080/") //tu naimportujte adresu IPV4 vasho PC
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     val api = retrofit.create(CalculationApi::class.java)
@@ -81,13 +82,13 @@ fun PrintResultScreen(navController: NavController) {
 
     Scaffold(
         containerColor = Color(0xFF060270),
-        floatingActionButton = {
-            FloatingActionButton(onClick = {
-                Toast.makeText(context, "Autor Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
-            }) {
-                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(onClick = {
+//                Toast.makeText(context, "Autor Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
+//            }) {
+//                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
+//            }
+//        }
     ) { innerPadding ->
         when {
             isLoading -> {

@@ -32,13 +32,13 @@ fun GraphScreen(navController: NavController) {
 
     Scaffold(
         containerColor = Color(0xFF060270),
-        floatingActionButton = {
-            FloatingActionButton(onClick = {
-                Toast.makeText(context, "Autor: Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
-            }) {
-                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(onClick = {
+//                Toast.makeText(context, "Autor: Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
+//            }) {
+//                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
+//            }
+//        }
     ) { innerPadding ->
         Column(
             modifier = Modifier

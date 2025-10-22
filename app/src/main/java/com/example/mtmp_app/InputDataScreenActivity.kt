@@ -19,7 +19,7 @@ import android.widget.Toast
 import androidx.compose.foundation.text.KeyboardOptions
 
 @Composable
-fun LocalVersionScreen(navController: NavController) {
+fun InputDataScreen(navController: NavController) {
     val context = LocalContext.current
 
     var startSpeed by remember { mutableStateOf(0f) }
@@ -27,15 +27,15 @@ fun LocalVersionScreen(navController: NavController) {
 
     Scaffold(
         containerColor = Color(0xFF060270),
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    Toast.makeText(context, "Autor Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
-                }
-            ) {
-                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
-            }
-        }
+//        floatingActionButton = {
+//            FloatingActionButton(
+//                onClick = {
+//                    Toast.makeText(context, "Autor Juraj Brilla ZS 2025/26", Toast.LENGTH_LONG).show()
+//                }
+//            ) {
+//                Icon(imageVector = Icons.Default.Info, contentDescription = "Info")
+//            }
+//        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -86,22 +86,49 @@ fun LocalVersionScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            Button(
-                onClick = {
-                    navController.currentBackStackEntry?.savedStateHandle?.set("angle", throwAngle)
-                    navController.currentBackStackEntry?.savedStateHandle?.set("startSpeed", startSpeed)
-                    navController.navigate("print_result")
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-                shape = RoundedCornerShape(50.dp)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Hod šípom",
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp
-                )
+                Button(
+                    onClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("angle", throwAngle)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("startSpeed", startSpeed)
+                        navController.navigate("print_result_server")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    shape = RoundedCornerShape(50.dp)
+                ) {
+                    Text(
+                        text = "Hoď šíp na server",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 30.sp
+                    )
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Button(
+                    onClick = {
+                        navController.currentBackStackEntry?.savedStateHandle?.set("angle", throwAngle)
+                        navController.currentBackStackEntry?.savedStateHandle?.set("startSpeed", startSpeed)
+                        navController.navigate("print_result_locally")
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                    shape = RoundedCornerShape(50.dp)
+                ) {
+                    Text(
+                        text = "Hoď šíp v mobile",
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 30.sp
+                    )
+                }
             }
+
         }
     }
 }

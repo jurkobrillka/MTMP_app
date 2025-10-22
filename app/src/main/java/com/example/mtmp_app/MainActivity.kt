@@ -52,8 +52,10 @@ class MainActivity : ComponentActivity() {
                     startDestination = "main"
                 ) {
                     composable("main") { MainScaffold(navController) }
-                    composable("local_version") { LocalVersionScreen(navController) }
-                    composable("print_result") { PrintResultScreen(navController) }
+                    composable("input_data") { InputDataScreen(navController) }
+                    composable("about_author") { AboutAuthorActivity(navController) }
+                    composable("print_result_server") { PrintResultScreen(navController) }
+                    composable("print_result_locally") { PrintResultLocallyScreen(navController) }
                     composable("animation_screen") {AnimationScreen(navController)}
                     composable("graph_screen") {GraphScreen(navController)}
                 }
@@ -67,23 +69,23 @@ class MainActivity : ComponentActivity() {
 fun MainScaffold(navController: NavHostController) {
     Scaffold(
         containerColor = Color(0xFF060270),
-        floatingActionButton = {
-            val context = LocalContext.current
-            FloatingActionButton(
-                onClick = {
-                    Toast.makeText(
-                        context,
-                        "Autor Juraj Brilla ZS 2025/26",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Info,
-                    contentDescription = "Info"
-                )
-            }
-        }
+//        floatingActionButton = {
+//            val context = LocalContext.current
+//            FloatingActionButton(
+//                onClick = {
+//                    Toast.makeText(
+//                        context,
+//                        "Autor Juraj Brilla ZS 2025/26",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//            ) {
+//                Icon(
+//                    imageVector = Icons.Default.Info,
+//                    contentDescription = "Info"
+//                )
+//            }
+//        }
         ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -105,7 +107,7 @@ fun MainSplittedLayout(navController: NavController){
     )
     {
         Card(
-            onClick =  { navController.navigate("local_version") },
+            onClick =  { navController.navigate("input_data") },
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
@@ -117,7 +119,7 @@ fun MainSplittedLayout(navController: NavController){
                 contentAlignment = Alignment.Center
             ){
                 Text(
-                    text = "Lokálna\nverzia",
+                    text = "Hod šípom",
                     style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Center,
                 )
@@ -125,7 +127,7 @@ fun MainSplittedLayout(navController: NavController){
         }
         Spacer(modifier = Modifier.height(20.dp))
         Card(
-            onClick =  { navController.navigate("local_version") },
+            onClick =  { navController.navigate("about_author") },
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
@@ -137,7 +139,7 @@ fun MainSplittedLayout(navController: NavController){
                 contentAlignment = Alignment.Center
             ){
                 Text(
-                    text = "Klient-server\nverzia",
+                    text = "Zadanie",
                     style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Center,
                 )
